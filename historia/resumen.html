@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chuleta de Historia</title>
+  <meta name="theme-color" content="#101a2b">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    .chuleta h2 { font-size: 24px; font-weight: 700; margin: var(--s6) 0 var(--s3); }
+    .chuleta ul { list-style: none; padding: 0; margin: 0; }
+    .chuleta li { padding: var(--s2) 0; border-top: 1px solid var(--line); }
+    .chuleta li b { font-weight: 700; }
+    .chuleta li.fila { display: flex; gap: var(--s3); }
+    .chuleta .anio { flex: none; min-width: 3.2em; font-family: var(--font-display); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .chuleta .cinco { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s2); padding: 0; }
+    .chuleta .cinco li { border: 1px solid var(--line); border-radius: var(--r2); background: var(--surface); padding: var(--s3); }
+    .chuleta .aviso { padding: var(--s3) var(--s4); border-radius: var(--r2); background: var(--hint-bg); border: 1px solid var(--hint); margin-top: var(--s4); font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <main class="wrap chuleta">
+    <header class="hud">
+      <a class="icon-btn" href="./" aria-label="Volver a los planetas" style="display:grid;place-items:center;text-decoration:none">←</a>
+      <span class="brand">Chuleta de Historia</span>
+    </header>
+    <p class="kicker">Tema 3 · Los inicios de la civilización islámica</p>
+    <h1>Lo esencial en una página</h1>
+    <p class="sub">Léela antes de jugar, o cuando un planeta se te atragante.</p>
+
+    <h2>🕌 Los 5 pilares (P-O-A-A-P)</h2>
+    <ul class="cinco">
+      <li>🗣️ <b>Profesión de fe</b><br>Un solo Dios, Alá; Mahoma es su profeta</li>
+      <li>🙏 <b>Oración</b><br>5 veces al día, hacia La Meca</li>
+      <li>💰 <b>Azaque</b><br>Limosna: impuesto anual para los necesitados</li>
+      <li>🌙 <b>Ayuno</b><br>En Ramadán, durante las horas de sol</li>
+      <li>🕋 <b>Peregrinación</b><br>A La Meca, una vez en la vida</li>
+    </ul>
+
+    <h2>⏳ Línea del tiempo</h2>
+    <ul id="crono"></ul>
+
+    <h2>🧑‍✈️ Quién es quién</h2>
+    <ul id="gente"></ul>
+
+    <h2>👥 La sociedad, de arriba abajo</h2>
+    <ul>
+      <li><b>Jassa</b>: aristocracia árabe y siria, dueña de grandes tierras</li>
+      <li><b>Mawali</b>: musulmanes no árabes (con los abasíes la diferencia desaparece)</li>
+      <li><b>Dimmi</b>: cristianos y judíos. Practican su religión pagando jarach y yizya</li>
+      <li><b>Personas esclavizadas</b>: por deudas, guerra o herencia</li>
+    </ul>
+
+    <h2>🤝 En al-Ándalus convivían</h2>
+    <ul>
+      <li><b>Bereberes</b>: del norte de África, casi todo el ejército de Tariq</li>
+      <li><b>Árabes y sirios</b>: minoría</li>
+      <li><b>Hispanovisigodos</b>: la mayoría de la población</li>
+      <li><b>Muladíes</b>: convertidos al islam (<i>MU</i>darse de religión)</li>
+      <li><b>Mozárabes</b>: cristianos que adoptaron la cultura árabe (<i>MO</i>ntados en el cristianismo)</li>
+    </ul>
+
+    <h2>🏙️ Ciudades de al-Ándalus</h2>
+    <ul id="ciudades"></ul>
+
+    <h2>📖 Glosario</h2>
+    <ul id="glosario"></ul>
+
+    <p class="aviso">⚠️ Esto resume solo las páginas del libro que se han subido. Si el profe ha marcado qué entra en el examen (apartado 3.3, por ejemplo), hazle caso a él.</p>
+  </main>
+  <script src="preguntas.js"></script>
+  <script>
+    var li = function (h) { return '<li>' + h + '</li>'; };
+    document.getElementById('crono').innerHTML = EVENTOS.map(function (e) { return '<li class="fila"><span class="anio">' + e.y + '</span><span>' + e.c + '</span></li>'; }).join('');
+    document.getElementById('gente').innerHTML = PERSONAS.map(function (p) { return li('<b>' + p.n + '</b>: ' + p.d + '.'); }).join('');
+    document.getElementById('ciudades').innerHTML = CIUDADES.map(function (c) { return li('<b>' + c.a + '</b> = ' + c.m + ' <small>(' + c.nota + ')</small>'); }).join('');
+    document.getElementById('glosario').innerHTML = TERMINOS.map(function (t) { return li('<b>' + t.t + '</b>: ' + t.d + '.'); }).join('');
+  </script>
+</body>
+</html>

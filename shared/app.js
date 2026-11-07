@@ -4,14 +4,18 @@
 (() => {
   const app = document.getElementById('app');
   const LETRAS = ['A', 'B', 'C', 'D'];
-  const LARGO_MISION = 8;
+  const CFG = window.MATERIA || {};              // cada asignatura define su configuración en su index.html
+  const PREFIJO = CFG.prefijo || 'mfyq_';        // separa el progreso de cada asignatura
+  const LARGO_MISION = CFG.largo || 8;
+  const NOMBRE_COMUN = 'mision_nombre';          // el nombre se pregunta una sola vez
 
   /* ---------- guardado (si el navegador lo permite) ---------- */
   const store = {
-    get(k, d) { try { const v = localStorage.getItem('mfyq_' + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
-    set(k, v) { try { localStorage.setItem('mfyq_' + k, JSON.stringify(v)); } catch (e) { /* sin guardado */ } },
+    get(k, d) { try { const v = localStorage.getItem(PREFIJO + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(PREFIJO + k, JSON.stringify(v)); } catch (e) { /* sin guardado */ } },
   };
   let perfil = store.get('perfil', { nombre: '', estrellas: 0, misiones: 0, fallos: {}, vistas: {}, record: 0 });
+  try { if (!perfil.nombre) perfil.nombre = localStorage.getItem(NOMBRE_COMUN) || ''; } catch (e) { /* sin guardado */ }
   const guardar = () => store.set('perfil', perfil);
 
   /* ---------- utilidades ---------- */
@@ -59,7 +63,7 @@
     }
 
     const n = modo === 'mezcla' ? 10 : LARGO_MISION;
-    const planetas = modo === 'mezcla' ? barajar(PLANETAS.map((p) => p.id)) : [modo];
+    const planetas = modo === 'mezcla' ? barajar(PLANETAS.filter((p) => p.enMezcla !== false).map((p) => p.id)) : [modo];
     for (let i = 0; i < n; i++) {
       const p = planetas[i % planetas.length];
       const nivel = 1 + Math.floor((i * 3) / n);
@@ -90,7 +94,7 @@
     const hayFallos = Object.values(perfil.fallos).some((n) => n > 0);
     app.innerHTML = `
       <header class="hud">
-        <span class="brand">Misión FyQ</span>
+        <span class="brand">${CFG.marca || 'Misión FyQ'}</span>
         <span class="pill-star" aria-label="${perfil.estrellas} estrellas"><span aria-hidden="true">⭐</span> <b class="num">${perfil.estrellas}</b></span>
       </header>
       <section class="hello">
@@ -99,7 +103,8 @@
         <p class="sub">Misiones cortas de ${LARGO_MISION} preguntas. Cada acierto a la primera = una estrella.</p>
       </section>
       <nav class="planets">
-        ${PLANETAS.map((p) => `
+        ${PLANETAS.map((p, i) => `
+          ${p.grupo && p.grupo !== (PLANETAS[i - 1] || {}).grupo ? `<p class="grupo">${p.grupo}</p>` : ''}
           <button class="planet" data-modo="${p.id}">
             <span class="p-emoji" aria-hidden="true">${p.emoji}</span>
             <span class="p-txt"><b>${p.nombre}</b><small>${p.desc}</small></span>
@@ -107,7 +112,7 @@
           </button>`).join('')}
         <button class="planet special" data-modo="mezcla">
           <span class="p-emoji" aria-hidden="true">🌌</span>
-          <span class="p-txt"><b>Misión galáctica</b><small>10 preguntas de todos los planetas. Como el examen.</small></span>
+          <span class="p-txt"><b>Misión galáctica</b><small>10 preguntas de distintos planetas. Como el examen.</small></span>
           <span class="go" aria-hidden="true">›</span>
         </button>
         ${hayFallos ? `
@@ -119,7 +124,11 @@
       </nav>
       <footer class="foot">
         <span>Misiones completadas: <b class="num">${perfil.misiones}</b> · Mejor racha: <b class="num">${perfil.record}</b></span>
-        <button class="link" id="cambiar">Cambiar nombre</button>
+        <span class="links">
+          ${CFG.resumen ? `<a class="link" href="${CFG.resumen}">📋 Chuleta</a>` : ''}
+          <a class="link" href="../">🏠 Otra asignatura</a>
+          <button class="link" id="cambiar">Cambiar nombre</button>
+        </span>
       </footer>`;
     app.querySelectorAll('.planet').forEach((b) => b.addEventListener('click', () => empezar(b.dataset.modo)));
     document.getElementById('cambiar').addEventListener('click', pedirNombre);
@@ -142,6 +151,7 @@
     document.getElementById('f').addEventListener('submit', (e) => {
       e.preventDefault();
       perfil.nombre = inp.value.trim().slice(0, 20) || 'crack';
+      try { localStorage.setItem(NOMBRE_COMUN, perfil.nombre); } catch (err) { /* sin guardado */ }
       guardar();
       inicio();
     });

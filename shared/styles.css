@@ -246,3 +246,11 @@ h3 { font-size: 22px; font-weight: 700; margin-bottom: var(--s3); }
   .opt { font-size: 18px; }
   .p-emoji { font-size: 28px; width: 36px; }
 }
+
+/* ---------- varias asignaturas ---------- */
+a.planet, a.link { text-decoration: none; }
+a.link { text-decoration: underline; display: inline-flex; align-items: center; min-height: 32px; }
+.links { display: flex; flex-wrap: wrap; gap: var(--s4); }
+.grupo { margin: var(--s4) 0 var(--s1); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); }
+.grupo:first-child { margin-top: 0; }
+.planet .stats { color: var(--text-2); font-size: 15px; }

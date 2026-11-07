@@ -3,22 +3,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Misión Física y Química</title>
-  <meta name="description" content="Entrenamiento interactivo de Física y Química para 2º ESO: laboratorio, método científico, unidades, notación científica y más.">
+  <title>Misión 2º ESO</title>
+  <meta name="description" content="Entrenamiento interactivo para los exámenes de 2º ESO: Física y Química e Historia.">
   <meta name="theme-color" content="#101a2b">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="shared/styles.css">
 </head>
 <body>
   <div class="sky" aria-hidden="true"></div>
-  <main id="app" class="wrap">
-    <p>Cargando la nave…</p>
+  <main class="wrap">
+    <header class="hud">
+      <span class="brand">Misión 2º ESO</span>
+    </header>
+    <section class="hello">
+      <p class="kicker" id="hola">Hola 👋</p>
+      <h1>¿Qué examen vamos a preparar?</h1>
+      <p class="sub">Elige una asignatura. Cada una guarda sus propias estrellas.</p>
+    </section>
+    <nav class="planets">
+      <a class="planet" href="fyq/">
+        <span class="p-emoji" aria-hidden="true">🧪</span>
+        <span class="p-txt"><b>Física y Química</b><small>Método científico, unidades, laboratorio</small><span class="stats" id="st-fyq"></span></span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+      <a class="planet" href="historia/">
+        <span class="p-emoji" aria-hidden="true">🏺</span>
+        <span class="p-txt"><b>Historia</b><small>Tema 3: el islam y al-Ándalus</small><span class="stats" id="st-hist"></span></span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
+    </nav>
   </main>
-  <noscript><p class="wrap">Esta misión necesita JavaScript activado.</p></noscript>
-  <script src="preguntas.js"></script>
-  <script src="app.js"></script>
+  <script>
+    (function () {
+      function leer(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
+      function nombre() { try { return localStorage.getItem('mision_nombre') || ''; } catch (e) { return ''; } }
+      var n = nombre(); if (n) document.getElementById('hola').textContent = 'Hola, ' + n + ' 👋';
+      [['mfyq_perfil', 'st-fyq'], ['mhist_perfil', 'st-hist']].forEach(function (par) {
+        var p = leer(par[0]); if (!p) return;
+        document.getElementById(par[1]).textContent = '⭐ ' + (p.estrellas || 0) + ' · ' + (p.misiones || 0) + ' misiones';
+      });
+    })();
+  </script>
 </body>
 </html>

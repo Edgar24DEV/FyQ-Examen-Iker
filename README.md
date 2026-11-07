@@ -1,45 +1,53 @@
-# 🚀 Misión Física y Química (2º ESO)
+# 🚀 Misión 2º ESO
 
-Entrenador interactivo para el examen de Física y Química, pensado para chavales con TDA: preguntas cortas de una en una, mini-píldoras de teoría, estrellas, rachas y un **"¡Casi!"** con truco paso a paso cuando se falla.
+Entrenador interactivo para preparar exámenes, pensado para chavales con TDA: preguntas cortas de una en una, mini-píldoras de teoría, estrellas, rachas y un **«¡Casi!»** con pista paso a paso cuando se falla.
 
-## Qué incluye
+Es una web estática (sin servidor, sin cuentas). El progreso se guarda en el propio navegador de cada dispositivo.
 
-- **6 planetas**: Laboratorio · Detective (método científico) · Unidades (SI y kelvin) · Escalera (cambios de unidades y factores) · Gigante (notación científica y redondeo) · Medidas (errores y gráficas).
-- **Misión galáctica**: 10 preguntas mezcladas de todo el temario, como un examen.
-- **Misión repaso**: aparece sola cuando hay fallos y prioriza lo que más cuesta.
-- **Nunca salen iguales**: 63 preguntas de teoría que se eligen al azar (las falladas salen más) y 9 generadores que inventan ejercicios nuevos de conversiones, factores, tiempo, notación científica, redondeo, kelvin y errores, de fácil a difícil dentro de cada misión.
-- **Botón 🔊** para que lea la pregunta en voz alta.
-- Guarda nombre, estrellas y fallos en el propio navegador. No necesita cuentas ni servidor.
+## Asignaturas
 
-## Probarlo en tu ordenador
+| Carpeta | Contenido |
+|---|---|
+| `fyq/` | **Física y Química**: laboratorio, método científico, unidades, escalera y factores de conversión, notación científica, errores y gráficas. |
+| `historia/` | **Historia, tema 3**: el islam, su expansión, la sociedad islámica y al-Ándalus (con chuleta en `historia/resumen.html`). |
+| `shared/` | El motor del juego (`app.js`) y los estilos (`styles.css`), comunes a las dos. |
+| `index.html` | Portada para elegir asignatura. |
 
-Haz doble clic en `index.html`. Ya está.
+Cada asignatura guarda su propio progreso (`mfyq_…` y `mhist_…`). El nombre se pregunta una sola vez.
+
+## Cómo funciona cada misión
+
+- Misiones de 8 preguntas. Dentro de cada una la dificultad sube poco a poco.
+- Cada vez que se estrena un tema sale antes una mini-píldora de teoría.
+- Preguntas **fijas** (se eligen al azar; las que se fallan salen más) y **generadores** que inventan ejercicios nuevos cada vez (conversiones, fechas, siglos, vocabulario…).
+- **Misión galáctica**: 10 preguntas mezcladas, como un examen. **Misión repaso**: aparece sola cuando hay fallos.
+- Botón 🔊 para que lea la pregunta en voz alta.
+
+## Probarlo en local
+
+Abre `index.html` con doble clic. (O `python -m http.server` en esta carpeta y entra en `http://localhost:8000`.)
 
 ## Publicarlo gratis
 
-### Opción A · GitHub Pages
-1. Crea una cuenta en [github.com](https://github.com) si no la tienes.
-2. Botón **New repository** → nombre, por ejemplo, `mision-fyq` → **Public** → **Create repository**.
-3. En la página del repositorio: **uploading an existing file** → arrastra los 5 archivos (`index.html`, `styles.css`, `app.js`, `preguntas.js`, `README.md`) → **Commit changes**.
-4. Ve a **Settings → Pages**. En *Source* elige **Deploy from a branch**, rama **main**, carpeta **/(root)** → **Save**.
-5. En un minuto tendrás la web en `https://TU-USUARIO.github.io/mision-fyq/`.
+**GitHub Pages**: en el repositorio → *Settings → Pages* → *Deploy from a branch* → rama `main`, carpeta `/(root)` → *Save*. En un minuto estará en `https://TU-USUARIO.github.io/NOMBRE-DEL-REPO/`.
 
-### Opción B · Vercel
-1. Entra en [vercel.com](https://vercel.com) con tu cuenta de GitHub.
-2. **Add New → Project** → importa el repositorio `mision-fyq` (el del paso A) → *Framework Preset*: **Other** → **Deploy**.
-3. Te da una URL tipo `https://mision-fyq.vercel.app`.
+**Vercel**: *Add New → Project* → importa el repositorio → *Framework Preset: Other* → *Deploy*.
 
-> Truco: en el móvil o la tablet, abre la web y usa **"Añadir a pantalla de inicio"** para que parezca una app.
+> Ojo: ahora la portada está en la raíz. Física y Química está en `…/fyq/` e Historia en `…/historia/`.
 
 ## Añadir o cambiar preguntas
 
-Todo está en `preguntas.js`. Para añadir una pregunta de teoría copia una línea `S(...)` y cambia el texto:
+Todo está en el `preguntas.js` de cada asignatura. Para añadir una pregunta fija, copia una línea `S(...)`:
 
 ```js
-S('lab13', 'lab', '¿Para qué sirve el cristalizador?', '💎 Para obtener cristales', ['🔥 Para calentar', '⚖️ Para pesar'],
-  'En el cristalizador se evapora el agua y quedan los cristales.', ['💧 Piensa en la sal que queda cuando se seca el agua del mar.'], 'instrumentos'),
+S('id-unico', 'planeta', 'Pregunta', 'Respuesta buena', ['Mala 1', 'Mala 2'],
+  'Explicación cuando acierta', ['Pista 1', 'Pista 2'], 'clave-de-píldora (opcional)'),
 ```
 
-Orden: `id único`, `planeta` (`lab`, `metodo`, `si`, `escalera`, `notacion`, `errores`), `pregunta`, `respuesta buena`, `[dos respuestas malas]`, `explicación`, `[pasos del truco]`, `píldora opcional`.
+Los planetas están al principio del archivo. Un planeta con `enMezcla: false` no entra en la misión galáctica (ahora es el caso de *Mujeres* en Historia, por si el profe dice que no entra).
 
-Si el profesor ha dado algo de forma distinta (por ejemplo, otro truco o una regla), cámbialo ahí y vuelve a subir el archivo.
+## Añadir otra asignatura
+
+1. Copia `historia/` con otro nombre y cambia `preguntas.js`.
+2. En su `index.html` cambia `window.MATERIA` (`prefijo` único, `marca`).
+3. Añade una tarjeta en el `index.html` de la raíz.
