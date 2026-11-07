@@ -9,7 +9,7 @@ Es una web estática (sin servidor, sin cuentas). El progreso se guarda en el pr
 | Carpeta | Contenido |
 |---|---|
 | `fyq/` | **Física y Química**: laboratorio, método científico, unidades, escalera y factores de conversión, notación científica, errores y gráficas. |
-| `historia/` | **Historia, tema 3**: el islam, su expansión, la sociedad islámica y al-Ándalus (con chuleta en `historia/resumen.html`). |
+| `historia/` | **Historia, tema 3**: el islam, los califatos (ortodoxo, omeya y abasí), la sociedad islámica y al-Ándalus (con chuleta en `historia/resumen.html`). |
 | `shared/` | El motor del juego (`app.js`) y los estilos (`styles.css`), comunes a las dos. |
 | `index.html` | Portada para elegir asignatura. |
 
@@ -44,7 +44,7 @@ S('id-unico', 'planeta', 'Pregunta', 'Respuesta buena', ['Mala 1', 'Mala 2'],
   'Explicación cuando acierta', ['Pista 1', 'Pista 2'], 'clave-de-píldora (opcional)'),
 ```
 
-Los planetas están al principio del archivo. Un planeta con `enMezcla: false` no entra en la misión galáctica (ahora es el caso de *Mujeres* en Historia, por si el profe dice que no entra).
+Los planetas están al principio del archivo. Un planeta con `enMezcla: false` no entra en la misión galáctica (pero sigue disponible como planeta). El apartado 3.3 (Mujeres) se quitó de Historia porque no entra en el examen; está en el historial de git por si hiciera falta.
 
 ## Añadir otra asignatura
 

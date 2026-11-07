@@ -9,9 +9,10 @@
 
 const PLANETAS = [
   { id: 'doc',   emoji: '🕌', nombre: 'Planeta Doctrina',    desc: 'Corán, sunna y los 5 pilares', grupo: 'El islam' },
-  { id: 'exp',   emoji: '🗺️', nombre: 'Planeta Expansión',   desc: 'Califatos, fitna, suníes y chiitas', grupo: 'El islam' },
+  { id: 'exp',   emoji: '🗺️', nombre: 'Planeta Expansión',   desc: 'Califato ortodoxo, fitna, suníes y chiitas', grupo: 'El islam' },
+  { id: 'omeya', emoji: '🌴', nombre: 'Planeta Omeyas',      desc: 'Califato omeya: Damasco, 661-750', grupo: 'El islam' },
+  { id: 'abasi', emoji: '📚', nombre: 'Planeta Abasíes',     desc: 'Califato abasí: Bagdad, desde 750', grupo: 'El islam' },
   { id: 'soc',   emoji: '👥', nombre: 'Planeta Sociedad',    desc: 'Jassa, mawali, dimmi y esclavos', grupo: 'La sociedad islámica' },
-  { id: 'muj',   emoji: '👩', nombre: 'Planeta Mujeres',     desc: 'Las mujeres en el primer islam (¿entra? mira el aviso)', grupo: 'La sociedad islámica', enMezcla: false },
   { id: 'con',   emoji: '⚔️', nombre: 'Planeta Conquista',   desc: 'Tariq, el año 711 y los pactos', grupo: 'Al-Ándalus' },
   { id: 'and',   emoji: '🏰', nombre: 'Planeta Al-Ándalus',  desc: 'Emirato, califato de Córdoba y taifas', grupo: 'Al-Ándalus' },
   { id: 'conv',  emoji: '🤝', nombre: 'Planeta Convivencia', desc: 'Muladíes, mozárabes, bereberes…', grupo: 'Al-Ándalus' },
@@ -40,14 +41,18 @@ const EVENTOS = [
   { y: 732,  c: 'Batalla de Poitiers',                         q: 'fue la batalla de Poitiers' },
   { y: 750,  c: 'Los abasíes sustituyen a los omeyas',         q: 'terminó el califato omeya' },
   { y: 756,  c: 'Abderramán I funda el emirato de Córdoba',    q: 'Abderramán I fundó el emirato independiente de Córdoba' },
+  { y: 762,  c: 'Se funda Bagdad, capital de los abasíes',     q: 'se fundó Bagdad' },
   { y: 912,  c: 'Abderramán III se proclama califa',           q: 'Abderramán III se proclamó califa' },
   { y: 1002, c: 'Muere Almanzor',                              q: 'murió Almanzor' },
   { y: 1031, c: 'Desaparece el califato de Córdoba',           q: 'desapareció el califato de Córdoba' },
+  { y: 1258, c: 'Los mongoles toman Bagdad: fin del califato abasí', q: 'los mongoles tomaron Bagdad y acabó el califato abasí' },
 ];
 
 // d = qué fue/hizo · h = pista
 const PERSONAS = [
   { n: 'Abu-Bakr',       d: 'fue el primer califa',                                       h: 'Sucedió a Mahoma cuando murió, en el año 632.' },
+  { n: 'Abu-l-Abbás al-Saffah', d: 'derrocó a los omeyas y fundó el califato abasí en 750', h: 'Su dinastía llevó la capital de Damasco a Bagdad.' },
+  { n: 'Harún al-Raschid', d: 'fue el califa abasí de Bagdad en la época de mayor esplendor', h: 'Gobernó de 786 a 809 desde Bagdad, no desde Damasco.' },
   { n: 'Moawiya',        d: 'fundó la dinastía omeya',                                    h: 'Era el gobernador de Siria y llegó a califa en el año 661.' },
   { n: 'Alí',            d: 'fue califa, primo de Mahoma, y murió asesinado',             h: 'Los chiitas dicen que el califa debe ser descendiente suyo.' },
   { n: 'Otmán',          d: 'fue el califa cuyo asesinato desencadenó la fitna',          h: 'Gobernó de 644 a 656. Su muerte provocó la «gran discordia».' },
@@ -81,6 +86,9 @@ const TERMINOS = [
   { t: 'Bereberes',  d: 'Población del norte de África; eran los soldados de Tariq',    q: 'a la población del norte de África que formaba el ejército de Tariq', g: 'gente' },
   { t: 'Muladíes',   d: 'Hispanovisigodos convertidos al islam',                        q: 'a los hispanovisigodos que se convirtieron al islam', g: 'gente' },
   { t: 'Mozárabes',  d: 'Cristianos que asimilaron la cultura árabe',                   q: 'a los cristianos que adoptaron la cultura árabe', g: 'gente' },
+  { t: 'Visir',      d: 'Ministro principal y mano derecha del califa',                 q: 'al ministro principal y mano derecha del califa', g: 'califatos' },
+  { t: 'Casa de la Sabiduría', d: 'Centro de estudio y traducción de obras de Bagdad',  q: 'al centro de estudio y traducción de obras de Bagdad', g: 'califatos' },
+  { t: 'Dinastía',   d: 'Serie de gobernantes de una misma familia',                    q: 'a la serie de gobernantes de una misma familia', g: 'califatos' },
   { t: 'Valí',       d: 'Gobernador de una provincia del califato',                     q: 'al gobernador de una provincia del califato', g: 'gobierno' },
   { t: 'Valiato',    d: 'Provincia gobernada por un valí',                              q: 'a una provincia gobernada por un valí', g: 'gobierno' },
   { t: 'Emir',       d: 'Gobernante que tiene el poder político, como un rey',          q: 'al gobernante con poder político, como un rey', g: 'gobierno' },
@@ -114,11 +122,11 @@ const PIL = {
   expansion: '🗺️ Cuando murió Mahoma (<b>632</b>) empezó el <b>califato ortodoxo</b> (632-661). Los califas eran jefes <b>políticos y religiosos</b>. Conquistaron Mesopotamia, Siria, Persia y Egipto.',
   fitna: '⚡ El califa Otmán fue asesinado y empezó la <b>fitna</b> («gran discordia»), una guerra civil. Ganó Moawiya, que fundó la <b>dinastía omeya</b> (661) y el islam quedó dividido en <b>suníes</b> y <b>chiitas</b>.',
   corrientes: '🌗 <b>Suníes</b>: siguen la <b>sunna</b> (la tradición). <b>Chiitas</b>: el califa debe ser <b>descendiente de Alí</b>. Truco: Suníes ↔ Sunna (suenan igual).',
-  omeya: '👑 Con los <b>omeyas</b> (661-750) el califato se hizo un imperio gobernado desde <b>Damasco</b>. Después los <b>abasíes</b> los sustituyeron y llevaron la capital a <b>Bagdad</b>.',
+  omeya: '👑 Con los <b>omeyas</b> (661-750) el califato pasó a ser <b>hereditario</b> y se gobernaba desde <b>Damasco</b>. El imperio llegó del norte de África y Hispania hasta el valle del Indo, el <b>árabe</b> fue lengua oficial y los territorios eran <b>valiatos</b> con un <b>valí</b>. En 750 los abasíes los derrocaron.',
+  abasi: '📚 Los <b>abasíes</b> (750-1258) derrocaron a los omeyas y llevaron la capital a <b>Bagdad</b> (fundada en 762). Los <b>mawali</b>, sobre todo persas, ganaron peso, y el <b>visir</b> fue la mano derecha del califa. Bagdad brilló en ciencia y cultura (<b>Casa de la Sabiduría</b>), pero el imperio se fue fragmentando.',
   sociedad: '👥 La <b>umma</b> es la comunidad de creyentes. Arriba, la <b>jassa</b> (aristocracia árabe y siria). Luego los <b>mawali</b> (musulmanes no árabes) y, al margen, los <b>dimmi</b> (cristianos y judíos). En la base, las personas <b>esclavizadas</b>.',
   tributos: '💸 Los <b>dimmi</b> podían practicar su religión y conservar su forma de vida, pero tenían que pagar el <b>jarach</b> y la <b>yizya</b>. Eran «ciudadanos de segunda».',
   esclavos: '⛓️ Se llegaba a ser esclavizado por <b>deudas</b>, por ser <b>prisionero de guerra</b> o por ser <b>descendiente de esclavos</b>. La esclavitud era importante para la economía.',
-  mujeres: '👩 Antes del islam había <b>infanticidio</b> de niñas y poligamia sin límite. El Corán <b>prohibió el infanticidio</b>, <b>limitó a cuatro</b> las esposas y reconoció a las mujeres el derecho a <b>heredar</b> y tener bienes. Aun así, seguían en posición <b>subalterna</b>.',
   conquista: '⚔️ En <b>711</b> Tariq (gobernador de Tánger) desembarcó en Gibraltar mientras los visigodos se peleaban por el trono (Rodrigo contra Agila II). Derrotó a Rodrigo y recibió refuerzos de Musa.',
   pactos: '🤝 Los musulmanes eran pocos, así que prefirieron <b>pactar</b>: <b>pactos de rendición</b> (respetaban bienes y creencias si la ciudad se rendía) y <b>acuerdos de sumisión</b> (gobernadores visigodos se sometían). Ejemplo: Teodomiro (713).',
   emirato: '🏰 En <b>756</b> Abderramán I creó el <b>emirato independiente de Córdoba</b>: mandaba como un rey, pero reconocía la autoridad religiosa del califa abasí de Bagdad. Dividió el territorio en <b>coras</b>.',
@@ -130,7 +138,7 @@ const PIL = {
   campo: '🌾 Lo más dinámico fueron las <b>llanuras y vegas</b> con <b>regadío</b> (huertas de Murcia, Valencia y valle del Ebro). En las montañas había <b>alquerías</b> (aldeas) y <b>pastos</b> para ovejas y cabras.',
   medina: '🏛️ <b>Medina Azahara</b>: ciudad palaciega que mandó construir <b>Abderramán III</b> a las afueras de Córdoba. Fue su residencia, su corte y la sede del Gobierno. El <b>Salón Rico</b> es lo más famoso que se conserva.',
   siglos: '🔢 <b>Truco de los siglos</b>: quita las dos últimas cifras y <b>suma 1</b>. 711 → 7 + 1 = <b>siglo VIII</b>. Romanos: V=5, VI=6, VII=7, VIII=8, IX=9, X=10, XI=11.',
-  fechas: '⏳ Línea del tiempo: <b>632</b> muere Mahoma · <b>661</b> omeyas · <b>711</b> Tariq · <b>756</b> emirato · <b>912</b> califato · <b>1002</b> muere Almanzor · <b>1031</b> taifas.',
+  fechas: '⏳ Línea del tiempo: <b>632</b> muere Mahoma · <b>661</b> omeyas · <b>711</b> Tariq · <b>756</b> emirato · <b>912</b> califato · <b>1002</b> muere Almanzor · <b>1031</b> taifas. Y en Oriente: <b>750</b> abasíes · <b>762</b> Bagdad · <b>1258</b> fin de los abasíes.',
   palabras: '📖 Pregunta de vocabulario: fíjate en la palabra y piensa en el apartado del libro donde salía (islam, sociedad, gobierno o economía).',
   personas: '🧑‍✈️ Pregunta de personajes: relaciona cada nombre con lo que hizo y con su año. Las pistas te ayudan si te atascas.',
 };
@@ -165,7 +173,7 @@ const FIJAS = [
   S('d13', 'doc', '¿Cuál de estas cosas <b>NO</b> es uno de los cinco pilares?', '🏗️ Construir una mezquita en cada ciudad', ['🌙 El ayuno en Ramadán', '💰 La limosna (azaque)'],
     'Los pilares son: profesión de fe, oración, azaque, ayuno y peregrinación.', ['✋ Repasa los 5: P-O-A-A-P.'], 'pilares'),
 
-  // ===== EXPANSIÓN (apartados 2.1 – 2.3) =====
+  // ===== EXPANSIÓN (apartado 2.1) =====
   S('e1', 'exp', '¿En qué año murió <b>Mahoma</b>?', '632', ['661', '711'],
     'Mahoma murió en <b>632</b> y le sucedió Abu-Bakr, el primer califa.', ['⏳ La línea: 632 (Mahoma) → 661 (omeyas) → 711 (Tariq).'], 'expansion'),
   S('e2', 'exp', '¿Quién fue el <b>primer califa</b>?', '👤 Abu-Bakr', ['👤 Alí', '👤 Otmán'],
@@ -188,12 +196,56 @@ const FIJAS = [
     'Para los chiitas el califa debe <b>descender de Alí</b>.', ['👪 Alí era primo de Mahoma.'], 'corrientes'),
   S('e11', 'exp', 'Los <b>suníes</b> son los seguidores de…', '🛣️ La sunna, la tradición', ['👪 Alí y sus descendientes', '💰 Los mercenarios del califa'],
     'Suníes viene de <b>sunna</b>: la tradición.', ['🛣️ Suníes ↔ sunna: ¡suenan igual!'], 'corrientes'),
-  S('e12', 'exp', '¿Desde qué ciudad gobernaban los <b>omeyas</b>?', '🏙️ Damasco', ['🏙️ Bagdad', '🏙️ Córdoba'],
+  S('e12', 'omeya', '¿Desde qué ciudad gobernaban los <b>omeyas</b>?', '🏙️ Damasco', ['🏙️ Bagdad', '🏙️ Córdoba'],
     'Los omeyas gobernaron desde <b>Damasco</b>; los abasíes, desde Bagdad.', ['🔁 Omeyas = Damasco. Abasíes = Bagdad.'], 'omeya'),
-  S('e13', 'exp', '¿Qué dinastía <b>sustituyó a los omeyas</b> y llevó la capital a Bagdad?', '👑 Los abasíes', ['👑 Los califas ortodoxos', '👑 Los visigodos'],
-    'Los <b>abasíes</b> sustituyeron a los omeyas (hacia el 750).', ['🔁 Omeyas → abasíes.'], 'omeya'),
-  S('e14', 'exp', 'Con los omeyas, ¿qué lengua pasó a ser <b>oficial</b>?', '🔤 El árabe', ['🔤 El latín', '🔤 El persa'],
+  S('e13', 'abasi', '¿Qué dinastía <b>sustituyó a los omeyas</b> y llevó la capital a Bagdad?', '👑 Los abasíes', ['👑 Los califas ortodoxos', '👑 Los visigodos'],
+    'Los <b>abasíes</b> sustituyeron a los omeyas (hacia el 750).', ['🔁 Omeyas → abasíes.'], 'abasi'),
+  S('e14', 'omeya', 'Con los omeyas, ¿qué lengua pasó a ser <b>oficial</b>?', '🔤 El árabe', ['🔤 El latín', '🔤 El persa'],
     'El <b>árabe</b> se convirtió en la lengua oficial del imperio.', ['🔤 La lengua del Corán.'], 'omeya'),
+
+  // ===== CALIFATO OMEYA (apartado 2.2) =====
+  S('o1', 'omeya', '¿Cuándo duró el <b>califato omeya</b>?', '📅 De 661 a 750', ['📅 De 632 a 661', '📅 De 750 a 1258'],
+    'El califato omeya fue de <b>661 a 750</b>: empieza con Moawiya y acaba cuando lo sustituyen los abasíes.', ['⏳ Empieza donde acaba el ortodoxo (661).', '🔚 Termina cuando llegan los abasíes: 750.'], 'omeya'),
+  S('o2', 'omeya', 'Antes de ser califa, <b>Moawiya</b> era gobernador de…', '📍 Siria', ['📍 Egipto', '📍 Persia'],
+    'Era <b>gobernador de Siria</b>; desde allí se proclamó califa en 661.', ['📍 Su capital, Damasco, está en Siria.'], 'omeya'),
+  S('o3', 'omeya', 'Con los omeyas, el cargo de califa pasó a ser…', '👨‍👦 Hereditario: pasaba de padres a hijos', ['🗳️ Elegido entre los discípulos del Profeta', '🧑‍🏫 Elegido por los ulemas'],
+    'Los omeyas hicieron el califato <b>hereditario</b> (dentro de su familia). Los primeros califas, en cambio, se elegían entre los cercanos a Mahoma.', ['🔁 Con los ortodoxos se elegía. ¿Qué cambió con una dinastía?', '👨‍👦 Dinastía = una misma familia.'], 'omeya'),
+  S('o4', 'omeya', '¿Hasta dónde llegó el <b>imperio omeya</b>?', '🗺️ Del norte de África y la península ibérica hasta el valle del Indo', ['🗺️ Solo la península arábiga', '🗺️ Toda Europa, hasta Escandinavia'],
+    'Se extendió desde <b>Hispania y el norte de África</b> (oeste) hasta el <b>valle del Indo</b> (este).', ['🗺️ La conquista de Tariq, en 711, fue parte de esta expansión.'], 'omeya'),
+  S('o5', 'omeya', 'Cada <b>provincia</b> (valiato) del imperio omeya la gobernaba…', '🏛️ Un valí', ['👑 Un emir independiente', '🙏 Un imam'],
+    'Un <b>valí</b> gobernaba cada <b>valiato</b>; al-Ándalus fue uno de ellos.', ['🏛️ Valiato = provincia. El que la gobierna es el…'], 'omeya'),
+  S('o6', 'omeya', 'Los omeyas empezaron a acuñar una moneda propia de oro, el…', '🪙 Dinar', ['🪙 Denario', '🪙 Sestercio'],
+    'El <b>dinar</b> era la moneda de oro (el dirham, de plata, iba junto a él).', ['🪙 Es una de las dos monedas que ya conoces: dinar y dirham.'], 'omeya'),
+  S('o7', 'omeya', '¿Qué dinastía levantó la <b>Cúpula de la Roca</b> (Jerusalén) y la <b>Gran Mezquita de Damasco</b>?', '👑 Los omeyas', ['👑 Los abasíes', '👑 Los visigodos'],
+    'Son obras de los <b>omeyas</b>, que gobernaban desde Damasco.', ['🏙️ Una de ellas está en Damasco, su capital.'], 'omeya'),
+  S('o8', 'omeya', '¿Por qué cayeron los omeyas?', '😠 Muchos musulmanes, como los mawali, apoyaron a los abasíes', ['⚔️ Los derrotó Carlos Martel en Poitiers', '🏰 Los conquistaron los visigodos'],
+    'Muchos grupos, sobre todo los <b>mawali</b>, estaban descontentos y respaldaron a los <b>abasíes</b>, que los derrocaron en 750.', ['😠 Los mawali eran musulmanes «de segunda categoría».'], 'omeya'),
+  S('o9', 'omeya', '¿Qué hicieron los abasíes con la familia omeya en 750?', '⚔️ Acabaron con casi toda ella; solo escaparon unos pocos', ['🤝 Compartieron el poder con ella', '🏝️ La desterraron a La Meca'],
+    'Casi toda la familia omeya fue asesinada. Uno de los que escaparon fue <b>Abderramán I</b>, que llegó a al-Ándalus.', ['⚰️ ¿Quién llegó a al-Ándalus en 756 tras el asesinato de los omeyas?'], 'omeya'),
+  S('o10', 'omeya', '¿Cuál es el <b>orden correcto</b> de los califatos?', '📅 Ortodoxo → omeya → abasí', ['📅 Omeya → ortodoxo → abasí', '📅 Abasí → ortodoxo → omeya'],
+    'Ortodoxo (632-661) → omeya (661-750) → abasí (desde 750).', ['🔢 632 → 661 → 750: del más antiguo al más reciente.'], 'omeya'),
+
+  // ===== CALIFATO ABASÍ (apartado 2.3) =====
+  S('b1', 'abasi', '¿Quién derrocó a los omeyas en 750 y fundó el <b>califato abasí</b>?', '👤 Abu-l-Abbás al-Saffah', ['👤 Moawiya', '👤 Abderramán I'],
+    '<b>Abu-l-Abbás al-Saffah</b> fundó la dinastía abasí.', ['🔁 Moawiya era omeya, no abasí. Abderramán I huyó de los abasíes.'], 'abasi'),
+  S('b2', 'abasi', 'Bagdad, la capital abasí, está situada junto al río…', '🌊 Tigris', ['🌊 Nilo', '🌊 Guadalquivir'],
+    'Bagdad está junto al <b>Tigris</b>, en Mesopotamia (hoy Irak).', ['🗺️ Mesopotamia significa «entre ríos»: Tigris y Éufrates.'], 'abasi'),
+  S('b3', 'abasi', 'Con los abasíes, ¿qué pueblo ganó mucha influencia en la corte y la administración?', '🌍 Los persas', ['🌍 Los visigodos', '🌍 Los francos'],
+    'Los <b>persas</b> (musulmanes no árabes) tuvieron gran peso en la administración abasí.', ['🕌 Eran mawali: musulmanes que no eran árabes.'], 'abasi'),
+  S('b4', 'abasi', 'El <b>visir</b> era…', '🧑‍💼 El ministro principal, mano derecha del califa', ['🙏 El que guiaba la oración', '🏛️ El gobernador de una provincia'],
+    'El <b>visir</b> era el ministro principal: el califa delegaba en él buena parte del gobierno.', ['🧑‍💼 Piensa en un «primer ministro» del califa.'], 'abasi'),
+  S('b5', 'abasi', 'La <b>Casa de la Sabiduría</b> de Bagdad fue…', '📚 Un centro de estudio y traducción de obras científicas y filosóficas', ['🏯 Una fortaleza del ejército', '🛍️ El mercado principal'],
+    'Allí se estudiaba y se <b>traducían al árabe</b> obras de otras culturas, como la griega.', ['📚 Sabiduría = conocimiento, libros.'], 'abasi'),
+  S('b6', 'abasi', 'Bajo los abasíes, Bagdad se convirtió en…', '🌟 Una de las ciudades más ricas y cultas del mundo', ['🏚️ Una aldea de pastores', '⚔️ Una simple fortaleza militar'],
+    'Bagdad fue un gran centro de <b>comercio, ciencia y cultura</b>.', ['🌟 Fue la época dorada del califato de Oriente.'], 'abasi'),
+  S('b7', 'abasi', '¿Quién fue <b>Harún al-Raschid</b>?', '👑 Un califa abasí de Bagdad, de la época de mayor esplendor', ['👑 El último califa omeya', '👑 El primer emir de Córdoba'],
+    'Gobernó de <b>786 a 809</b> desde Bagdad.', ['🏙️ Gobernó desde Bagdad, no desde Damasco.'], 'abasi'),
+  S('b8', 'abasi', 'Con el paso del tiempo, el imperio abasí…', '🧩 Se fue fragmentando en territorios independientes', ['🌍 Conquistó toda Europa', '🤝 Se unió al reino visigodo'],
+    'Al-Ándalus fue de los primeros en separarse (756): el <b>emirato independiente de Córdoba</b>.', ['🏰 ¿Qué creó Abderramán I en 756?'], 'abasi'),
+  S('b9', 'abasi', '¿Cómo acabó el califato abasí de Bagdad?', '⚔️ Los mongoles tomaron Bagdad en 1258', ['⚔️ Lo derrotó Carlos Martel en Poitiers (732)', '⚔️ Lo sustituyeron las taifas en 1031'],
+    'En <b>1258</b> los mongoles tomaron Bagdad. Poitiers (732) y las taifas (1031) son otros hechos.', ['⏳ Ocurrió mucho después de la caída del califato de Córdoba.'], 'abasi'),
+  S('b10', 'abasi', '¿Qué pareja es correcta?', '🏙️ Omeyas → Damasco · abasíes → Bagdad', ['🏙️ Omeyas → Bagdad · abasíes → Damasco', '🏙️ Omeyas → Córdoba · abasíes → Damasco'],
+    'Omeyas: <b>Damasco</b>. Abasíes: <b>Bagdad</b>.', ['🔁 Primero van los omeyas, luego los abasíes (750).'], 'abasi'),
 
   // ===== SOCIEDAD (apartado 3.2) =====
   S('s1', 'soc', 'La <b>comunidad de creyentes</b> del islam se llama…', '🌍 Umma', ['🌍 Jassa', '🌍 Mawali'],
@@ -218,26 +270,6 @@ const FIJAS = [
     'En la base estaban las personas <b>esclavizadas</b>.', ['⬇️ La base es lo de más abajo.'], 'esclavos'),
   S('s11', 'soc', 'Los dimmi pagaban…', '💸 El jarach y la yizya', ['💸 El azaque y el diezmo', '💸 El dinar y el dirham'],
     'Pagaban el <b>jarach</b> y la <b>yizya</b>. Dinar y dirham son monedas, no impuestos.', ['💸 Dos impuestos con nombres raros: jarach y yizya.'], 'tributos'),
-
-  // ===== MUJERES (apartado 3.3) =====
-  S('m1', 'muj', 'Antes del islam, entre las mujeres árabes era frecuente…', '😔 El infanticidio de niñas y el maltrato', ['📜 El derecho a heredar', '🏛️ Gobernar tribus'],
-    'Su situación era de <b>gran rigor</b>: infanticidio, maltrato y poligamia.', ['😔 Era una situación muy dura.'], 'mujeres'),
-  S('m2', 'muj', '¿Qué <b>prohibió</b> el Corán?', '🚫 El infanticidio de niñas', ['🚫 El divorcio', '🚫 La herencia de las mujeres'],
-    'El Corán <b>prohibió el infanticidio</b> de niñas.', ['🚫 Prohibió matar a las niñas recién nacidas.'], 'mujeres'),
-  S('m3', 'muj', '¿Cuántas <b>esposas</b> podía tener un marido según el Corán?', '4️⃣ Hasta cuatro', ['1️⃣ Solo una', '♾️ Las que quisiera'],
-    'El Corán <b>moderó la poligamia</b> y la limitó a cuatro.', ['4️⃣ Antes no había límite; el Corán puso el máximo.'], 'mujeres'),
-  S('m4', 'muj', 'La <b>poligamia</b> consiste en…', '💍 Que un hombre se case con varias mujeres', ['💍 Que una mujer se case con varios hombres', '💍 Casarse con una sola persona'],
-    'Poligamia = un hombre con varias esposas.', ['💍 «Poli» significa muchos.'], 'mujeres'),
-  S('m5', 'muj', 'Con el islam, las mujeres adquirieron el derecho a…', '📜 Heredar y disponer de bienes propios', ['👑 Ser califas', '🏛️ Gobernar provincias'],
-    'Pudieron <b>heredar</b> y tener <b>bienes particulares</b> (dinero, tierras, ganado…).', ['📜 Dinero y tierras que ya eran suyos.'], 'mujeres'),
-  S('m6', 'muj', 'A pesar de las mejoras, las mujeres seguían en una posición…', '⬇️ Subalterna (por debajo del hombre)', ['⚖️ Igual a la de los hombres', '⬆️ Superior a la de los hombres'],
-    'Seguían en <b>posición subalterna</b>, como era habitual en la época.', ['⬇️ Subalterna: por debajo.'], 'mujeres'),
-  S('m7', 'muj', 'El <b>hiyab</b> es…', '🧕 El velo que cubre la cabeza', ['👗 Una falda ceñida', '💸 Un impuesto'],
-    'El <b>hiyab</b> es el velo para cubrir la cabeza.', ['🧕 Se pone en la cabeza.'], 'mujeres'),
-  S('m8', 'muj', '¿Quiénes <b>rechazaron el hiyab</b> como resistencia a los símbolos del dominio masculino?', '👩 Mujeres de clases altas, como Sukeina y Aisha', ['👩 Las esclavizadas', '👩 Las reinas visigodas'],
-    'Fueron sobre todo <b>mujeres de clases altas</b>: Sukeina y Aisha.', ['👩 Eran descendientes de Mahoma y de Abu-Bakr.'], 'mujeres'),
-  S('m9', 'muj', 'El <b>kabati</b> era…', '👗 Una falda ceñida creada en tiempos del califa Omar I', ['🧕 Un velo para la cabeza', '💸 Una tasa para los dimmi'],
-    'Una <b>falda ceñida</b> que remarcaba las formas.', ['👗 Se ponía en el cuerpo, no en la cabeza.'], 'mujeres'),
 
   // ===== CONQUISTA (apartado 4.1) =====
   S('c1', 'con', '¿En qué año <b>desembarcó Tariq</b> en Gibraltar?', '711', ['732', '756'],
@@ -441,7 +473,7 @@ function genDefinicion() {
     t: `¿Qué significa <b>«${t.t}»</b>?`,
     ok: t.d, no: malos.map((x) => x.d),
     ex: `<b>${t.t}</b>: ${t.d.charAt(0).toLowerCase() + t.d.slice(1)}.`,
-    tr: [`📚 Piensa en dónde salía «${t.t}» en el libro (${{ islam: 'el islam y su expansión', gente: 'la sociedad', gobierno: 'el gobierno de al-Ándalus', economia: 'la economía' }[t.g]}).`],
+    tr: [`📚 Piensa en dónde salía «${t.t}» en el libro (${{ islam: 'el islam y su expansión', gente: 'la sociedad', gobierno: 'el gobierno de al-Ándalus', economia: 'la economía', califatos: 'los califatos omeya y abasí' }[t.g]}).`],
   };
 }
 
@@ -453,7 +485,7 @@ function genTermino() {
     t: `¿Qué palabra designa ${t.q}?`,
     ok: t.t, no: malos.map((x) => x.t),
     ex: `<b>${t.t}</b>: ${t.d.charAt(0).toLowerCase() + t.d.slice(1)}.`,
-    tr: [`📚 Está en el apartado de ${{ islam: 'el islam y su expansión', gente: 'la sociedad', gobierno: 'el gobierno de al-Ándalus', economia: 'la economía' }[t.g]}.`],
+    tr: [`📚 Está en el apartado de ${{ islam: 'el islam y su expansión', gente: 'la sociedad', gobierno: 'el gobierno de al-Ándalus', economia: 'la economía', califatos: 'los califatos omeya y abasí' }[t.g]}.`],
   };
 }
 
@@ -477,7 +509,7 @@ function genCiudad() {
 }
 
 const GENERADORES = {
-  doc: [], exp: [], soc: [], muj: [], con: [], and: [], conv: [],
+  doc: [], exp: [], omeya: [], abasi: [], soc: [], con: [], and: [], conv: [],
   eco: [genCiudad],
   crono: [genAnio, genOrden, genSiglo],
   gente: [genQuien],
