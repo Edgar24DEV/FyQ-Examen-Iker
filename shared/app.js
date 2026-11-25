@@ -22,7 +22,7 @@
   const barajar = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const azar = (arr) => arr[Math.floor(Math.random() * arr.length)];
   const nombre = () => perfil.nombre || 'crack';
-  const txt = (s) => s.replace(/<sup>(.*?)<\/sup>/g, ' elevado a $1').replace(/<\/span><span>/g, ' entre ').replace(/<[^>]+>/g, ' ').replace(/·/g, ' por ').replace(/\s+/g, ' ');
+  const txt = (s) => s.replace(/<span class="per">(.*?)<\/span>/g, ' periodo $1 ').replace(/√/g, ' raíz de ').replace(/−/g, ' menos ').replace(/<sup>(.*?)<\/sup>/g, ' elevado a $1').replace(/<\/span><span>/g, ' entre ').replace(/<[^>]+>/g, ' ').replace(/·/g, ' por ').replace(/\s+/g, ' ');
 
   /* ---------- frases de ánimo ---------- */
   const BIEN = ['¡BOOOM! ¡Correcto!', '¡Pleno, {n}!', '¡Eres una máquina!', '¡Clavado!', '¡Así se hace, {n}!', '¡Respuesta de científico!', '¡Directo a la diana!', '¡Imparable!', '¡Genial, {n}!', '¡Nivel PRO!'];

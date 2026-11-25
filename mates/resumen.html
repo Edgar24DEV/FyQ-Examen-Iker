@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chuleta de Mates</title>
+  <meta name="theme-color" content="#101a2b">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    .chuleta h2 { font-size: 24px; font-weight: 700; margin: var(--s6) 0 var(--s3); }
+    .chuleta ul { list-style: none; padding: 0; margin: 0; }
+    .chuleta li { padding: var(--s2) 0; border-top: 1px solid var(--line); }
+    .chuleta li b { font-weight: 700; }
+    .chuleta li.fila { display: flex; gap: var(--s3); }
+    .chuleta .anio { flex: none; min-width: 3.2em; font-family: var(--font-display); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .chuleta .cinco { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s2); padding: 0; }
+    .chuleta .cinco li { border: 1px solid var(--line); border-radius: var(--r2); background: var(--surface); padding: var(--s3); }
+    .chuleta .aviso { padding: var(--s3) var(--s4); border-radius: var(--r2); background: var(--hint-bg); border: 1px solid var(--hint); margin-top: var(--s4); font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <main class="wrap chuleta">
+    <header class="hud">
+      <a class="icon-btn" href="./" aria-label="Volver a los planetas" style="display:grid;place-items:center;text-decoration:none">←</a>
+      <span class="brand">Chuleta de Mates</span>
+    </header>
+    <p class="kicker">2º ESO · Fracciones y decimales</p>
+    <h1>Lo esencial en una página</h1>
+    <p class="sub">Léela antes de jugar, o cuando un planeta se te atragante.</p>
+
+    <h2>🔍 Corregir un problema</h2>
+    <ul>
+      <li>1. ¿El resultado <b>tiene sentido</b>? (una parte no puede ser mayor que el total)</li>
+      <li>2. Localiza <b>en qué paso</b> se equivoca y explica <b>por qué</b>.</li>
+      <li>3. Resuélvelo bien. Errores típicos: sumar numeradores y denominadores · hacer la fracción al revés · no invertir al dividir · dar lo gastado en vez de lo que queda.</li>
+      <li><b>a/b de una cantidad</b>: divide entre b y multiplica por a. Lo que queda = 1 − lo gastado.</li>
+    </ul>
+
+    <h2>🔢 ¿Qué decimal sale? (simplifica antes)</h2>
+    <ul class="cinco">
+      <li><b>Exacto</b><br>Denominador solo con 2 y/o 5</li>
+      <li><b>Periódico puro</b><br>Denominador sin 2 ni 5</li>
+      <li><b>Periódico mixto</b><br>2 o 5 <b>y</b> otro factor</li>
+      <li><b>Entero</b><br>Denominador 1 al simplificar</li>
+    </ul>
+
+    <h2>🔄 Generatriz</h2>
+    <ul>
+      <li><b>Exacto</b>: 0,45 = 45/100 = 9/20</li>
+      <li><b>Puro</b>: x = 0,<span class="per">3</span> → 10x − x = 3 → x = 3/9 = 1/3 (tantos 9 como cifras del periodo)</li>
+      <li><b>Mixto</b>: x = 0,8<span class="per">3</span> → 100x − 10x = 83 − 8 = 75 → x = 75/90 = 5/6</li>
+    </ul>
+
+    <h2>➗ Operaciones combinadas</h2>
+    <ul>
+      <li>Orden: <b>paréntesis → potencias y raíces → × y ÷ → + y −</b></li>
+      <li>(a/b)<sup>2</sup> = a<sup>2</sup>/b<sup>2</sup> · √(a/b) = √a/√b</li>
+      <li>Dividir = multiplicar por la <b>inversa</b> · Sumar/restar: común denominador</li>
+      <li>Decimales periódicos: <b>a fracción primero</b>.</li>
+    </ul>
+
+    <h2>⚖️ Comparar</h2>
+    <ul>
+      <li>mcm de los denominadores → mismo denominador → mayor numerador = mayor fracción.</li>
+      <li>Mismo numerador: es mayor la de menor denominador.</li>
+    </ul>
+
+    <h2>🎯 Estimar y errores</h2>
+    <ul>
+      <li>Estimar = redondear antes de calcular (19,8 · 4,1 ≈ 20 · 4).</li>
+      <li><b>Error absoluto</b> = |exacto − aproximado|</li>
+      <li><b>Error relativo</b> = error absoluto : exacto (× 100 = %). Menor error relativo = más preciso.</li>
+    </ul>
+
+    <h2>🔭 Notación científica</h2>
+    <ul>
+      <li>a · 10<sup>n</sup> con 1 ≤ a &lt; 10. Grande → n positivo · pequeño → n negativo.</li>
+      <li>Producto: se multiplican los números y se <b>suman</b> los exponentes; si a ≥ 10, ajusta.</li>
+    </ul>
+    <p class="aviso">💡 En el examen: lee bien, haz un dibujo si hay fracciones de cantidades y <b>revisa</b> si el resultado tiene sentido.</p>
+  </main>
+</body>
+</html>

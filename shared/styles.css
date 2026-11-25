@@ -254,3 +254,13 @@ a.link { text-decoration: underline; display: inline-flex; align-items: center; 
 .grupo { margin: var(--s4) 0 var(--s1); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-2); }
 .grupo:first-child { margin-top: 0; }
 .planet .stats { color: var(--text-2); font-size: 15px; }
+
+/* matemáticas: periodo con raya, barras de fracciones, expresiones */
+.per { text-decoration: overline; text-decoration-thickness: 2px; text-underline-offset: 3px; padding: 0 1px; }
+.barra { display: flex; gap: 3px; margin: 8px 0; max-width: 340px; }
+.barra i { flex: 1; height: 22px; border: 2px solid currentColor; border-radius: 4px; }
+.barra i.on, .barra i.c1 { background: var(--accent, #7aa2ff); }
+.barra i.c2 { background: #ffb347; }
+.barra i.c3 { background: transparent; }
+.expr { display: inline-block; font-size: 1.15em; margin: 4px 0; }
+.small { font-size: .8em; opacity: .8; }
