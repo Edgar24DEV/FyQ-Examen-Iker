@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chuleta de Música</title>
+  <meta name="theme-color" content="#101a2b">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📋</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/styles.css">
+  <style>
+    .chuleta h2 { font-size: 24px; font-weight: 700; margin: var(--s6) 0 var(--s3); }
+    .chuleta ul { list-style: none; padding: 0; margin: 0; }
+    .chuleta li { padding: var(--s2) 0; border-top: 1px solid var(--line); }
+    .chuleta li b { font-weight: 700; }
+    .chuleta li.fila { display: flex; gap: var(--s3); }
+    .chuleta .anio { flex: none; min-width: 3.2em; font-family: var(--font-display); font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+    .chuleta .cinco { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--s2); padding: 0; }
+    .chuleta .cinco li { border: 1px solid var(--line); border-radius: var(--r2); background: var(--surface); padding: var(--s3); }
+    .chuleta .aviso { padding: var(--s3) var(--s4); border-radius: var(--r2); background: var(--hint-bg); border: 1px solid var(--hint); margin-top: var(--s4); font-size: 16px; }
+  </style>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"></div>
+  <main class="wrap chuleta">
+    <header class="hud">
+      <a class="icon-btn" href="./" aria-label="Volver a los planetas" style="display:grid;place-items:center;text-decoration:none">←</a>
+      <span class="brand">Chuleta de Música</span>
+    </header>
+    <p class="kicker">2º ESO · Examen teórico</p>
+    <h1>Lo esencial en una página</h1>
+    <p class="sub">Léela antes de jugar, o cuando un planeta se te atragante.</p>
+
+    <h2>🔊 Cualidades del sonido (A-D-I-T)</h2>
+    <ul class="cinco">
+      <li><b>Altura</b><br>Agudo o grave (frecuencia, Hz). En la partitura: posición de la nota.</li>
+      <li><b>Duración</b><br>Largo o corto. En la partitura: las figuras.</li>
+      <li><b>Intensidad</b><br>Fuerte o suave (amplitud, dB). En la partitura: los matices.</li>
+      <li><b>Timbre</b><br>Quién o qué instrumento suena: el «color» del sonido.</li>
+    </ul>
+
+    <h2>📖 Conceptos</h2>
+    <ul>
+      <li><b>Pentagrama</b>: 5 líneas y 4 espacios, contados de abajo arriba.</li>
+      <li><b>Clave de sol</b>: da nombre a las notas; en 2.ª línea, esa nota es Sol.</li>
+      <li><b>Pulso</b>: latido regular. <b>Compás</b>: grupos de pulsos separados por líneas divisorias.</li>
+      <li><b>Ritmo</b>: duraciones combinadas. <b>Melodía</b>: sonidos de distinta altura uno tras otro. <b>Armonía</b>: a la vez.</li>
+      <li><b>Silencio</b>: tiempo sin sonido. <b>Puntillo</b>: suma la mitad. <b>Ligadura de prolongación</b>: une notas iguales y suma.</li>
+      <li><b>Alteraciones</b>: ♯ sube un semitono · ♭ baja un semitono · ♮ anula.</li>
+    </ul>
+
+    <h2>🎼 Notas en clave de sol</h2>
+    <div id="notas"></div>
+    <ul><li><b>Líneas</b>: Mi-Sol-Si-Re-Fa · <b>espacios</b>: Fa-La-Do-Mi.</li></ul>
+
+    <h2>🎵 Figuras y silencios</h2>
+    <div id="figuras"></div>
+    <div id="silencios"></div>
+    <ul><li>Redonda <b>4</b> · blanca <b>2</b> · negra <b>1</b> · corchea <b>½</b> · semicorchea <b>¼</b>. Cada una vale el doble que la siguiente.</li></ul>
+
+    <h2>📏 Compases</h2>
+    <ul>
+      <li>Número de <b>arriba</b> = tiempos por compás (2/4, 3/4, 4/4). El <b>4</b> de abajo = la negra vale un tiempo.</li>
+      <li>Suma las figuras y, al llegar, pon la <b>línea divisoria</b>. Si falta algo, la figura que falta = tiempos del compás − lo que hay.</li>
+    </ul>
+
+    <h2>🎚️ Articulación, tempo y dinámica</h2>
+    <ul>
+      <li><b>Dinámica</b> (fuerte/suave): <i><b>pp p mp mf f ff</b></i>, reguladores &lt; (crescendo) y &gt; (diminuendo).</li>
+      <li><b>Tempo</b> (velocidad): Largo · Adagio · Andante · Moderato · Allegro · Presto · <i>rit.</i> (frenar) · <i>accel.</i> (acelerar).</li>
+      <li><b>Articulación</b> (cómo se toca): staccato (punto: picado) · ligadura de expresión (legato) · acento &gt;.</li>
+      <li>Calderón: alarga la nota a gusto del intérprete.</li>
+    </ul>
+
+    <h2>🪜 Escalas</h2>
+    <ul>
+      <li><b>Mayor</b>: T T S T T T S → Do mayor: Do Re Mi Fa Sol La Si Do.</li>
+      <li><b>Menor natural</b>: T S T T S T T → La menor: La Si Do Re Mi Fa Sol La.</li>
+      <li>Semitonos naturales: <b>Mi-Fa</b> y <b>Si-Do</b>. Sol mayor lleva Fa♯ · Fa mayor, Si♭ · Mi menor, Fa♯ · Re menor, Si♭.</li>
+    </ul>
+    <p class="aviso">💡 En el examen: dibuja las figuras con cuidado (cabeza, plica y corchetes) y comprueba que cada compás suma lo que pide.</p>
+  </main>
+  <script src="pentagrama.js"></script>
+  <script>
+    var N = ['c4','d4','e4','f4','g4','a4','b4','c5','d5','e5','f5','g5','a5'];
+    function fila(ns) { return partitura(ns.map(function (n) { return { n: n, d: 1, txt: nombreNota(n), ancho: 44 }; }), { aria: 'notas en clave de sol' }); }
+    document.getElementById('notas').innerHTML = fila(N.slice(0, 7)) + fila(N.slice(7));
+    var F = [[1,'Redonda'],[2,'Blanca'],[4,'Negra'],[8,'Corchea'],[16,'Semicorchea']];
+    document.getElementById('figuras').innerHTML = partitura(F.map(function (f) { return { n: 'g4', d: f[0], txt: f[1], ancho: 64 }; }), { aria: 'figuras' });
+    document.getElementById('silencios').innerHTML = partitura(F.map(function (f) { return { r: true, d: f[0], txt: f[1], ancho: 64 }; }), { aria: 'silencios' });
+  </script>
+</body>
+</html>

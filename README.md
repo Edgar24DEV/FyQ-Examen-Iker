@@ -11,6 +11,7 @@ Es una web estática (sin servidor, sin cuentas). El progreso se guarda en el pr
 | `fyq/` | **Física y Química**: laboratorio, método científico, unidades, escalera y factores de conversión, notación científica, errores y gráficas. |
 | `historia/` | **Historia, tema 3**: el islam, los califatos (ortodoxo, omeya y abasí), la sociedad islámica y al-Ándalus (con chuleta en `historia/resumen.html`). |
 | `mates/` | **Matemáticas, 2º ESO**: corrección de problemas y fracciones/decimales (tipo de decimal, generatriz, operaciones, comparar, errores, notación científica), con generadores de ejercicios nuevos y chuleta en `mates/resumen.html`. |
+| `musica/` | **Música, 2º ESO**: cualidades del sonido, conceptos, notas en clave de sol, figuras, compases, articulación/tempo/dinámica y escalas. Las partituras se dibujan en SVG con `musica/pentagrama.js` (sin librerías). Chuleta en `musica/resumen.html`. |
 | `shared/` | El motor del juego (`app.js`) y los estilos (`styles.css`), comunes a las dos. |
 | `index.html` | Portada para elegir asignatura. |
 
@@ -34,7 +35,7 @@ Abre `index.html` con doble clic. (O `python -m http.server` en esta carpeta y e
 
 **Vercel**: *Add New → Project* → importa el repositorio → *Framework Preset: Other* → *Deploy*.
 
-> Ojo: ahora la portada está en la raíz. Física y Química está en `…/fyq/`, Historia en `…/historia/` y Matemáticas en `…/mates/`.
+> Ojo: ahora la portada está en la raíz. Física y Química está en `…/fyq/`, Historia en `…/historia/`, Matemáticas en `…/mates/` y Música en `…/musica/`.
 
 ## Añadir o cambiar preguntas
 

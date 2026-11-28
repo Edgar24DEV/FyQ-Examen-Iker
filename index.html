@@ -39,6 +39,11 @@
         <span class="p-txt"><b>Matemáticas</b><small>Fracciones, decimales y problemas</small><span class="stats" id="st-mat"></span></span>
         <span class="go" aria-hidden="true">›</span>
       </a>
+      <a class="planet" href="musica/">
+        <span class="p-emoji" aria-hidden="true">🎵</span>
+        <span class="p-txt"><b>Música</b><small>Sonido, notas, figuras, compases y escalas</small><span class="stats" id="st-mus"></span></span>
+        <span class="go" aria-hidden="true">›</span>
+      </a>
     </nav>
   </main>
   <script>
@@ -46,7 +51,7 @@
       function leer(k) { try { return JSON.parse(localStorage.getItem(k) || 'null'); } catch (e) { return null; } }
       function nombre() { try { return localStorage.getItem('mision_nombre') || ''; } catch (e) { return ''; } }
       var n = nombre(); if (n) document.getElementById('hola').textContent = 'Hola, ' + n + ' 👋';
-      [['mfyq_perfil', 'st-fyq'], ['mhist_perfil', 'st-hist'], ['mmat_perfil', 'st-mat']].forEach(function (par) {
+      [['mfyq_perfil', 'st-fyq'], ['mhist_perfil', 'st-hist'], ['mmat_perfil', 'st-mat'], ['mmus_perfil', 'st-mus']].forEach(function (par) {
         var p = leer(par[0]); if (!p) return;
         document.getElementById(par[1]).textContent = '⭐ ' + (p.estrellas || 0) + ' · ' + (p.misiones || 0) + ' misiones';
       });

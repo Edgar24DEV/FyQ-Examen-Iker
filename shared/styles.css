@@ -264,3 +264,12 @@ a.link { text-decoration: underline; display: inline-flex; align-items: center; 
 .barra i.c3 { background: transparent; }
 .expr { display: inline-block; font-size: 1.15em; margin: 4px 0; }
 .small { font-size: .8em; opacity: .8; }
+
+/* música: pentagramas en SVG */
+.pent { display: block; max-width: 100%; height: auto; margin: 10px 0 4px; overflow: visible; }
+.chuleta .pent { margin: 8px 0; }
+.opt .pent.mini { margin: 0; max-height: 78px; width: auto; }
+.signo-caja { margin: 12px 0 4px; display: flex; align-items: center; min-height: 48px; }
+.signo { height: auto; max-height: 56px; }
+.signo-op .signo, .signo-op .pent { max-height: 64px; width: auto; margin: 0; }
+.tempo { font-family: Georgia, 'Times New Roman', serif; font-size: 1.35em; }
